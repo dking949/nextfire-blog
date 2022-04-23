@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../lib/context';
 import { auth, googleAuthProvider } from '../lib/firebase';
+import { signInWithPopup, signInAnonymously, signOut } from 'firebase/auth';
 
 export default function EnterPage(props) {
   const { user, username } = useContext(UserContext);
@@ -21,7 +22,7 @@ export default function EnterPage(props) {
 
 function SignInButton() {
   const signInWithGoogle = async () => {
-    await auth.signInWithPopup(googleAuthProvider);
+    await signInWithPopup(auth, googleAuthProvider);
   }
   
   return (
@@ -29,7 +30,7 @@ function SignInButton() {
       <button className="btn-google" onClick={signInWithGoogle}>
         <img src={'/google.png'} width="30px" /> Sign in with Google
       </button>
-      <button onClick={() => auth.signInAnonymously()}>
+      <button onClick={() => signInAnonymously(auth)}>
         Sign in Anonymously
       </button>
     </>
@@ -37,7 +38,7 @@ function SignInButton() {
 }
 
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>;
+  return <button onClick={() => signOut(auth)}>Sign Out</button>;
 }
 
 function UsernameForm() {
