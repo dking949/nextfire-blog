@@ -1,5 +1,6 @@
 import Loader from '@components/Loader';
 import PostFeed from '@components/PostFeed';
+import Metatags from '@components/Metatags';
 import { firestore, postToJSON } from '@lib/firebase';
 import { Timestamp, query, where, orderBy, limit, collectionGroup, getDocs, startAfter, getFirestore } from 'firebase/firestore';
 import { useState } from 'react';
@@ -59,6 +60,7 @@ export default function Home(props) {
   return (
     <main>
 
+    <Metatags title="Home page"/>
       <div className="card card-info">
         <h2>💡 Next.js + Firebase - The Full Course</h2>
         <p>Welcome! This app is built with Next.js and Firebase and is loosely inspired by Dev.to.</p>
